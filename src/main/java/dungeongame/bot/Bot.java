@@ -1,6 +1,7 @@
 package dungeongame.bot;
 
 import dungeongame.botcharacter.Character;
+import dungeongame.botcharacter.characterdetails.inventory.Item;
 import dungeongame.keyboards.StarterKeyboard;
 import dungeongame.mapandfindingitems.Map;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -14,11 +15,20 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class Bot extends TelegramLongPollingBot {
 
     private final Character character;
+    Item hut = new Item("Hut", 2, 1);
+    Item lederweste = new Item("Lederweste", 5, 3);
+    Item eisenhelm = new Item("Eisenhelm", 3, 8);
+    Item stiefel = new Item("Stiefel", 1, 2);
+    Item robe = new Item("Robe", 2, 5);
+    Item handschuhe = new Item("Handschuhe", 1, 1);
+    Item schwereRuestung = new Item("Schwere Rüstung", 8, 12);
+    Item magierrobe = new Item("Magierrobe", 4, 6);
+    Item kettenhemd = new Item("Kettenhemd", 6, 7);
+    Item umhang = new Item("Umhang", 2, 3);
 
 
     public Bot(){
         this.character = new Character();
-
     }
     @Override
     public String getBotUsername() {
@@ -49,11 +59,10 @@ public class Bot extends TelegramLongPollingBot {
         message = update.getMessage();
         Long chatId = message.getChatId();
         SendMessage sendMessage = new SendMessage();
-
         if (message.getText().equals("\uD83D\uDC41")) {
             if (character.getPlayerState().getCurrentX() == 0) {
                 switch (character.getPlayerState().getCurrentY()) {
-                    case 0:
+                    case 0, 1:
                         sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig. Vielleicht zu ruhig?");
                         sendMessage.setChatId(chatId);
                         try {
@@ -61,8 +70,7 @@ public class Bot extends TelegramLongPollingBot {
                         } catch (TelegramApiException e) {
                             e.printStackTrace();
                         }
-                    case 1:
-
+                        break;
                     case 2:
 
                 }
@@ -82,11 +90,16 @@ public class Bot extends TelegramLongPollingBot {
             } else if (character.getPlayerState().getCurrentX() == 2) {
                 switch (character.getPlayerState().getCurrentY()) {
                     case 0:
-
-                    case 1:
-
-                    case 2:
-
+                        break;
+                    case 1, 2:
+                        sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig, vielleicht zu ruhig?");
+                        sendMessage.setChatId(chatId);
+                        try {
+                            execute(sendMessage);
+                        } catch (TelegramApiException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
             }
         }
