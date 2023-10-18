@@ -1,0 +1,68 @@
+package dungeongame.mapandbasiccommands;
+import dungeongame.bot.Bot;
+import dungeongame.botcharacter.Character;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import dungeongame.keyboards.Keyboardinfrontofhouse;
+import dungeongame.botcharacter.*;
+public class LookingAroundHandler {
+
+    public static void handleLookingAround(Bot bot, Update update) {
+        Message message = update.getMessage();
+        Long chatId = message.getChatId();
+        Keyboardinfrontofhouse keyboardinfrontofhouse = new Keyboardinfrontofhouse();
+        SendMessage sendMessage = new SendMessage();
+
+        if (message.getText().equals("\uD83D\uDC41")) {
+            if (bot.getCharacter().getPlayerState().getCurrentX() == 0) {
+                switch (bot.getCharacter().getPlayerState().getCurrentY()) {
+                    case 0, 2:
+                        sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig, vielleicht zu ruhig?");
+                        sendMessage.setChatId(chatId);
+                        try {
+                            bot.execute(sendMessage);
+                        } catch (TelegramApiException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 1:
+                        keyboardinfrontofhouse.createKeyboardInFrontOfHouse(chatId);
+                        break;
+                }
+            } else if (bot.getCharacter().getPlayerState().getCurrentX() == 1) {
+                switch (bot.getCharacter().getPlayerState().getCurrentY()) {
+                    case 0, 1:
+                        sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig, vielleicht zu ruhig?");
+                        sendMessage.setChatId(chatId);
+                        try {
+                            bot.execute(sendMessage);
+                        } catch (TelegramApiException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 2:
+                        keyboardinfrontofhouse.createKeyboardInFrontOfHouse(chatId);
+                        break;
+                }
+            } else if (bot.getCharacter().getPlayerState().getCurrentX() == 2) {
+                switch (bot.getCharacter().getPlayerState().getCurrentY()) {
+                    case 0:
+                        keyboardinfrontofhouse.createKeyboardInFrontOfHouse(chatId);
+                        break;
+                    case 1, 2:
+                        sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig, vielleicht zu ruhig?");
+                        sendMessage.setChatId(chatId);
+                        try {
+                            bot.execute(sendMessage);
+                        } catch (TelegramApiException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                }
+            }
+        }
+    }
+}
+
