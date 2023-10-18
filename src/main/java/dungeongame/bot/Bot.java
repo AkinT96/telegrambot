@@ -2,6 +2,7 @@ package dungeongame.bot;
 
 import dungeongame.botcharacter.Character;
 import dungeongame.botcharacter.characterdetails.inventory.Item;
+import dungeongame.keyboards.Keyboardinfrontofhouse;
 import dungeongame.keyboards.StarterKeyboard;
 import dungeongame.mapandfindingitems.Map;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -58,12 +59,29 @@ public class Bot extends TelegramLongPollingBot {
         Message message;
         message = update.getMessage();
         Long chatId = message.getChatId();
+        Keyboardinfrontofhouse keyboardinfrontofhouse = new Keyboardinfrontofhouse();
         SendMessage sendMessage = new SendMessage();
         if (message.getText().equals("\uD83D\uDC41")) {
             if (character.getPlayerState().getCurrentX() == 0) {
                 switch (character.getPlayerState().getCurrentY()) {
-                    case 0, 1:
-                        sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig. Vielleicht zu ruhig?");
+                    case 0, 2:
+                        sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig, vielleicht zu ruhig?");
+                        sendMessage.setChatId(chatId);
+                        try {
+                            execute(sendMessage);
+                        } catch (TelegramApiException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 1:
+                        keyboardinfrontofhouse.createKeyboardInFrontOfHouse(chatId);
+                        break;
+
+                }
+            } else if (character.getPlayerState().getCurrentX() == 1) {
+                switch (character.getPlayerState().getCurrentY()) {
+                    case 0,1:
+                        sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig, vielleicht zu ruhig?");
                         sendMessage.setChatId(chatId);
                         try {
                             execute(sendMessage);
@@ -72,24 +90,14 @@ public class Bot extends TelegramLongPollingBot {
                         }
                         break;
                     case 2:
-
-                }
-            } else if (character.getPlayerState().getCurrentX() == 1) {
-                switch (character.getPlayerState().getCurrentY()) {
-                    case 0:
-
-                        break;
-                    case 1:
-
-                        break;
-                    case 2:
-
+                        keyboardinfrontofhouse.createKeyboardInFrontOfHouse(chatId);
                         break;
                 }
 
             } else if (character.getPlayerState().getCurrentX() == 2) {
                 switch (character.getPlayerState().getCurrentY()) {
                     case 0:
+                        keyboardinfrontofhouse.createKeyboardInFrontOfHouse(chatId);
                         break;
                     case 1, 2:
                         sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig, vielleicht zu ruhig?");
@@ -108,7 +116,7 @@ public class Bot extends TelegramLongPollingBot {
 
 
 
-    //Basic commands to move around and to print a Intro for the start.(+ sending soundtrack once)
+    //Basic commands to move around and to print an Intro for the start.(+ sending soundtrack once)
     private void basicCommands(Update update) {
         StarterKeyboard starterKeyboard = new StarterKeyboard();
         Map map = new Map();
