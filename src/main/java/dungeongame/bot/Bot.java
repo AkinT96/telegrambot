@@ -142,6 +142,17 @@ public class Bot extends TelegramLongPollingBot {
                 map.showMap(chatId,character.getPlayerState().getCurrentX(),character.getPlayerState().getCurrentY());
             }
 
+            if (message.getText().equals("/charakter")){
+                SendMessage sendMessage = new SendMessage();
+                sendMessage.setChatId(chatId);
+                sendMessage.setText(character.getAttributes().toString());
+                try {
+                    execute(sendMessage);
+                } catch (TelegramApiException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
 
 
 

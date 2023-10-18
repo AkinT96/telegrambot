@@ -1,5 +1,6 @@
 package dungeongame.botcharacter;
 
+import dungeongame.botcharacter.characterdetails.Attributes;
 import dungeongame.botcharacter.characterdetails.Inventory;
 import dungeongame.botcharacter.characterdetails.Playerposition;
 
@@ -7,9 +8,11 @@ public class Character {
 
     private Playerposition playerposition;
     private  Inventory inventory;
+    private Attributes attributes;
     public Character() {
         this.playerposition = new Playerposition(0,0);
-        Inventory inventory = new Inventory();
+        this.inventory = new Inventory();
+        this.attributes = new Attributes();
     }
 
     public Playerposition getPlayerState() {
@@ -24,5 +27,12 @@ public class Character {
         this.inventory = inventory;
     }
 
+    public Attributes getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Attributes attributes) {
+        this.attributes = attributes;
+    }
 }
 
