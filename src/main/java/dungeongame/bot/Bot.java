@@ -1,19 +1,23 @@
 package dungeongame.bot;
 
-import dungeongame.characterandfights.Character;
+import dungeongame.botcharacter.Character;
 import dungeongame.keyboards.StarterKeyboard;
-import dungeongame.mapandpathing.Map;
-import dungeongame.inventory.Inventory;
-import dungeongame.mapandpathing.UserState;
+import dungeongame.mapsandfindingitems.Map;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class Bot extends TelegramLongPollingBot {
-    private UserState userState;
-    private Inventory inventory;
-    private Character character;
-    private StarterKeyboard starterKeyboard;
+
+    private final Character character;
+
+
+    public Bot(){
+        this.character = new Character();
+
+    }
     @Override
     public String getBotUsername() {
         return "Dungeonbot";
@@ -27,44 +31,51 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        this.userState = new UserState(0,0);
-        this.inventory = new Inventory();
-        this.character = new Character();
-        this.starterKeyboard = new StarterKeyboard();
-
-
-
 
         basicCommands(update);
+
+
+
     }
 
 
 
 
 
+
     private void basicCommands(Update update) {
+        StarterKeyboard starterKeyboard = new StarterKeyboard();
+        Map map = new Map();
         if (update.hasMessage()) {
             Message message = update.getMessage();
             Long chatId = message.getChatId();
 
 
-            //starting point with Intro
+            //starting point with Intro and keyboard
             if (message.hasText() && message.getText().equals("/start")) {
                 starterKeyboard.createStartKeyboard(chatId);
             }
-            //output character attributes
-            if (message.getText().equals("/charakter")) {
-                character.showCharacterAttributes(chatId);
+            //moving character on the map
+            if (message.getText().equals("⬆️")) {
+                 character.getPlayerState().setCurrentXUp();
             }
+            if (message.getText().equals("⬇️")) {
+                character.getPlayerState().setCurrentXDown();
+            }
+            if (message.getText().equals("➡️")) {
+                character.getPlayerState().setCurrentYDown();
+            }
+            if (message.getText().equals("⬅️")) {
+                character.getPlayerState().setCurrentYUp();
+            }
+
+
             //output map with current position
-            if (message.getText().equals("/karte")) {
-                Map Map = new Map();
-                Map.showMap(chatId,userState.getCurrentX(),userState.getCurrentY());
+            if (message.getText().equals("/karte")){
+                map.showMap(chatId,character.getPlayerState().getCurrentX(),character.getPlayerState().getCurrentY());
             }
-            //output current Inventory
-            if (message.getText().equals("/inventar")) {
-                inventory.showInventory(chatId);
-            }
+
+
 
 
 

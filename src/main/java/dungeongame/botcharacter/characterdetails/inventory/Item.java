@@ -1,4 +1,4 @@
-package dungeongame.inventory;
+package dungeongame.botcharacter.characterdetails.inventory;
 
 
 public class Item  {

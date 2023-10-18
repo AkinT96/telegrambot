@@ -1,22 +1,24 @@
-package dungeongame.inventory;
+package dungeongame.botcharacter.characterdetails;
 
 import dungeongame.bot.Bot;
+import dungeongame.botcharacter.characterdetails.inventory.Item;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Inventory extends Bot {
+public class Inventory {
 
     private final List<Item> inventory = new ArrayList<>();
+
 
 
     public void addItems(Item item){
         inventory.add(item);
     }
 
-    public String iterateInventory() {
+    public String showInventory() {
         if (!inventory.isEmpty()) {
             StringBuilder inventoryText = new StringBuilder("Dein Inventar:\n");
             for (Item item : inventory) {
@@ -28,15 +30,6 @@ public class Inventory extends Bot {
         }
     }
 
-    public void showInventory(Long chatID){
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setText(iterateInventory());
-        sendMessage.setChatId(chatID);
-        try{
-            execute(sendMessage);
-        } catch (TelegramApiException e){
-            e.printStackTrace();
-        }
-    }
+
 
 }

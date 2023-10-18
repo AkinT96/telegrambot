@@ -20,7 +20,6 @@ public class StarterKeyboard extends Bot {
                 Eine Übersicht über deine Befehle:
                 \uD83D\uDC41 Schaue dich um
                 ↕\uFE0F Benutzte die Pfeile um in die jeweilige Richtung zu gehen
-                ↪\uFE0F Kehre, wenn möglich, zurück zum Startpunkt
 
                 Viel Erfolg Abenteurer!""");
         sendMessage.setChatId(chatId);
@@ -41,21 +40,20 @@ public class StarterKeyboard extends Bot {
         List<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow row = new KeyboardRow();
         KeyboardButton button1 = new KeyboardButton("\uD83D\uDC41");
-        KeyboardButton button2 = new KeyboardButton("⬆\uFE0F");
-        KeyboardButton button3 = new KeyboardButton("⬇\uFE0F");
-        KeyboardButton button4 = new KeyboardButton("⬅\uFE0F");
-        KeyboardButton button5 = new KeyboardButton("➡\uFE0F");
-        KeyboardButton button6 = new KeyboardButton("↪\uFE0F");
+        KeyboardButton button2 = new KeyboardButton("⬆️");
+        KeyboardButton button3 = new KeyboardButton("⬇️");
+        KeyboardButton button4 = new KeyboardButton("⬅️");
+        KeyboardButton button5 = new KeyboardButton("➡️");
 
         row.add(button1);
         row.add(button2);
         row.add(button3);
         row.add(button4);
         row.add(button5);
-        row.add(button6);
         keyboard.add(row);
-        replyKeyboardMarkup.setKeyboard(keyboard);
 
+        replyKeyboardMarkup.setKeyboard(keyboard);
+replyKeyboardMarkup.setResizeKeyboard(true);
 
         return replyKeyboardMarkup;
     }
