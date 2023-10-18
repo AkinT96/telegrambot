@@ -14,7 +14,8 @@ public class StarterKeyboard extends Bot {
     public void createStartKeyboard(Long chatId) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText("""
-                Hallo Krieger! Beweise dich in großen Abenteuern und zeige deine Stärke.
+                Hallo Krieger! Ein kleines Dörfchen hat dich zur Hilfe gerufen. Um dich herum kein Mensch.
+                Kannst du herausfinden, was hier passiert ist?
                 Im Menu kannst du dir deine Attribute, Position und dein Inventar anzeigen lassen.
                 Der rote Punkt markiert deine Position.
                 Eine Übersicht über deine Befehle:

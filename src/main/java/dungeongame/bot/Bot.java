@@ -41,7 +41,9 @@ public class Bot extends TelegramLongPollingBot {
     }
 
 
-    //
+
+
+
     private void lookingAround(Update update) {
         Message message;
         message = update.getMessage();
@@ -52,7 +54,7 @@ public class Bot extends TelegramLongPollingBot {
             if (character.getPlayerState().getCurrentX() == 0) {
                 switch (character.getPlayerState().getCurrentY()) {
                     case 0:
-                        sendMessage.setText("Um dich herum ist gähnende leere!");
+                        sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig. Vielleicht zu ruhig?");
                         sendMessage.setChatId(chatId);
                         try {
                             execute(sendMessage);
@@ -141,7 +143,7 @@ public class Bot extends TelegramLongPollingBot {
         SendVoice sendVoice = new SendVoice();
         sendVoice.setChatId(chatId);
         sendVoice.setCaption("Spiel mich ab");
-        sendVoice.setVoice(new InputFile("https://public.db.files.1drv.com/y4mkpM8VmB8guJkN30h7QX0YWDVsLlvrYHE8ktwns4ENnHhu65pF4i1CJWbjDJ6iC-JlPXOFwXb0cwJUJdm_TLqSqmow2EKX1fUkXDEoVCeFE1FZ6zFJICInVYUpqGbIblrxZuKA3timJH6q2hJ8OLYXWYrT6JaG8vbWO5Lq71i64xaXA-BIULfvQwCwymUR12zV0wsp9VTc6DBJbOzd_JLHKbAAnMEwA8tU-Wg8fE3Yh8?AVOverride=1"));
+        sendVoice.setVoice(new InputFile("https://public.db.files.1drv.com/y4mRWoNdgN8x17sIGeKlg1mTkPEKDv2STGZuOQ2Ut5Kl0RzoNi2LyzrtzcSIPyuAXGUVXQjj6mVVfHdOqnyvKPO_0ElLosRqhanRnoUdccd-1_9ZuMSz3hpR7ZCdYe-Q1TY40es7mH62gZAyhbP-I_TR6IhgAApCYc_qEJWx_pKWhJaeSNwmoY64A5_3jNn9Z03bt36RsmtQbyOkoQT9IweQmzjUdI7mNAQSFLa1HoESOM?AVOverride=1"));
         try {
             execute(sendVoice);
         } catch (TelegramApiException e) {
