@@ -1,10 +1,9 @@
-package dungeongame.mapandbasiccommands;
+package dungeongame.Basiccommands;
 
 import dungeongame.bot.Bot;
-import dungeongame.keyboards.StarterKeyboard;
+import dungeongame.keyboards.StandardKeyboard;
+import dungeongame.MapsAndHouses.Map;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.send.SendVoice;
-import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -12,21 +11,20 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class BasicCommandHandler {
 
     public static void basicCommands(Bot bot, Update update) {
-        StarterKeyboard starterKeyboard = new StarterKeyboard();
+        StandardKeyboard standardKeyboard = new StandardKeyboard();
         Map map = new Map();
 
 
         if (update.hasMessage()) {
             Message message = update.getMessage();
             Long chatId = message.getChatId();
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setChatId(chatId);
 
-            if (message.hasText() && message.getText().equals("/start")) {
-                starterKeyboard.createStartKeyboard(chatId);
-                try {
-                    bot.execute(soundeffekt(chatId));
-                } catch (TelegramApiException e) {
-                    throw new RuntimeException(e);
-                }
+
+
+            if (message.hasText() && message.getText().equals("/start") || message.getText().equals("/tastatur")) {
+                standardKeyboard.createStartKeyboard(chatId);
             }
 
             if (message.getText().equals("⬆️")) {
@@ -47,9 +45,16 @@ public class BasicCommandHandler {
             }
 
             if (message.getText().equals("/charakter")) {
-                SendMessage sendMessage = new SendMessage();
-                sendMessage.setChatId(chatId);
+
                 sendMessage.setText(bot.getCharacter().getAttributes().toString());
+                try {
+                    bot.execute(sendMessage);
+                } catch (TelegramApiException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (message.getText().equals("/inventar")){
+                sendMessage.setText(bot.getCharacter().getInventory().showInventory());
                 try {
                     bot.execute(sendMessage);
                 } catch (TelegramApiException e) {
@@ -59,12 +64,5 @@ public class BasicCommandHandler {
         }
     }
 
-    private static SendVoice soundeffekt(Long chatId) {
-        SendVoice sendVoice = new SendVoice();
-        sendVoice.setChatId(chatId);
-        sendVoice.setCaption("Spiel mich ab");
-        sendVoice.setVoice(new InputFile("https://public.db.files.1drv.com/y4mRWoNdgN8x17sIGeKlg1mTkPEKDv2STGZuOQ2Ut5Kl0RzoNi2LyzrtzcSIPyuAXGUVXQjj6mVVfHdOqnyvKPO_0ElLosRqhanRnoUdccd-1_9ZuMSz3hpR7ZCdYe-Q1TY40es7mH62gZAyhbP-I_TR6IhgAApCYc_qEJWx_pKWhJaeSNwmoY64A5_3jNn9Z03bt36RsmtQbyOkoQT9IweQmzjUdI7mNAQSFLa1HoESOM?AVOverride=1"));
-        return sendVoice;
-    }
 
 }

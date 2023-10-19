@@ -1,18 +1,16 @@
-package dungeongame.mapandbasiccommands;
+package dungeongame.Basiccommands;
 import dungeongame.bot.Bot;
-import dungeongame.botcharacter.Character;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import dungeongame.keyboards.Keyboardinfrontofhouse;
-import dungeongame.botcharacter.*;
+import dungeongame.keyboards.KeyboardInFrontOfHouse;
 public class LookingAroundHandler {
 
     public static void handleLookingAround(Bot bot, Update update) {
         Message message = update.getMessage();
         Long chatId = message.getChatId();
-        Keyboardinfrontofhouse keyboardinfrontofhouse = new Keyboardinfrontofhouse();
+        KeyboardInFrontOfHouse keyboardinfrontofhouse = new KeyboardInFrontOfHouse();
         SendMessage sendMessage = new SendMessage();
 
         if (message.getText().equals("\uD83D\uDC41")) {
@@ -43,7 +41,7 @@ public class LookingAroundHandler {
                         }
                         break;
                     case 2:
-                        keyboardinfrontofhouse.createKeyboardInFrontOfHouse(chatId);
+                        keyboardinfrontofhouse.createKeyboardInFrontOfHouseMiller(chatId);
                         break;
                 }
             } else if (bot.getCharacter().getPlayerState().getCurrentX() == 2) {

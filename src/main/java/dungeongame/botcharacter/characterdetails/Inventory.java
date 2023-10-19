@@ -22,7 +22,7 @@ public class Inventory {
         if (!inventory.isEmpty()) {
             StringBuilder inventoryText = new StringBuilder("Dein Inventar:\n");
             for (Item item : inventory) {
-                inventoryText.append(item.getName()).append("\n");
+                inventoryText.append(item.getName()).append("\t Angriffswert: ").append(item.getAttackStrengthOfItem()).append("\t Verteidigungswert: ").append(item.getDefensiveStrengthOfItem()).append("\n");
             }
             return inventoryText.toString();
         } else {

@@ -1,14 +1,13 @@
-package dungeongame.mapandbasiccommands;
+package dungeongame.MapsAndHouses;
 
 import dungeongame.bot.Bot;
-import dungeongame.bot.SendingPicture;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
-public class Map extends Bot implements SendingPicture {
+public class Map extends Bot {
 
     // je nachdem an welcher Position der User ist, wird eine andere Karte ausgegeben
     public void showMap(Long chatId, int x, int y) {
@@ -59,7 +58,6 @@ public class Map extends Bot implements SendingPicture {
 
     }
 
-    @Override
     public void sendPicture(Long chatID, String PictureURL) {
         SendPhoto input = new SendPhoto();
         input.setChatId(chatID);
