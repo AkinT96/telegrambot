@@ -39,6 +39,20 @@ public class KeyboardInFrontOfHouse extends Bot {
         }
     }
 
+    public void createKeyboardInFrontOfHouseGreyWolvesAfterFight(Long chatId) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setText("An der Klingel steht Haus Grauwolf. Willst du das Haus betreten?");
+        sendMessage.setChatId(chatId);
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = getReplyKeyboardMarkup();
+        sendMessage.setReplyMarkup(replyKeyboardMarkup);
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void createKeyboardInFrontOfHouseMiller(Long chatId) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText("Du hörst Stimmen und Lärm. Willst du das Haus betreten?");

@@ -26,7 +26,7 @@ public class HouseGreyWolves {
             sendPicture(bot, update.getMessage().getChatId(), "https://db3pap006files.storage.live.com/y4m_Wf-i4hFo7tSScK5PubptbqwzVEJqlAkTMKGyLvPUdk9TyhVhcGUvzae7nx4wVD871J48o44rF4xXE5zn0OjNbNFO-Dd2Xq4DR_ra6Kj57IPeztZDg7vu3xJYxAbU0psdvaB5qsz_ToxzldhkvDiJwaBKiM8HTSNKWQrDdUdK93KNBDIhVheVlUp_u_KidnI6LS2zw7mArwBTuPo6kVEB1U6TEYbDp0eIUzN0PKQMNE?encodeFailures=1&width=883&height=883");
             sendText(bot,update.getMessage().getChatId(),"Dein Krieger befindet sich im Kampf, warte ein wenig");
             try {
-                Thread.sleep(20000);
+                Thread.sleep(12000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -36,13 +36,13 @@ public class HouseGreyWolves {
             bot.setWolvesAlive(false);
         }
 
-        else if (bot.getCharacter().getPlayerState().getCurrentX() == 2 && bot.getCharacter().getPlayerState().getCurrentY() == 0 && update.getMessage().getText().equals("Ja") ) {
+        else if (bot.getCharacter().getPlayerState().getCurrentX() == 2 && bot.getCharacter().getPlayerState().getCurrentY() == 0 && update.getMessage().getText().equals("Ja") && bot.isWolvesAlive() ) {
             KeyboardInHouse keyboardInHouse = new KeyboardInHouse();
             keyboardInHouse.createKeyboardInHouseGreyWolves(update.getMessage().getChatId());
             sendPicture(bot, update.getMessage().getChatId(), "https://db3pap006files.storage.live.com/y4m_Wf-i4hFo7tSScK5PubptbqwzVEJqlAkTMKGyLvPUdk9TyhVhcGUvzae7nx4wVD871J48o44rF4xXE5zn0OjNbNFO-Dd2Xq4DR_ra6Kj57IPeztZDg7vu3xJYxAbU0psdvaB5qsz_ToxzldhkvDiJwaBKiM8HTSNKWQrDdUdK93KNBDIhVheVlUp_u_KidnI6LS2zw7mArwBTuPo6kVEB1U6TEYbDp0eIUzN0PKQMNE?encodeFailures=1&width=883&height=883");
             sendText(bot,update.getMessage().getChatId(),"Dein Krieger befindet sich im Kampf, warte ein wenig");
             try {
-                Thread.sleep(500);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -50,12 +50,12 @@ public class HouseGreyWolves {
             bot.getCharacter().setPlayerposition(resetPosition);
             bot.getCharacter().getInventory().removeItemByName("Schlüssel");
             StandardKeyboard standardKeyboard = new StandardKeyboard();
-            standardKeyboard.createStartKeyboard(update.getMessage().getChatId());
+            standardKeyboard.createKeyboardLeavingHouses(update.getMessage().getChatId());
             bot.setHouseMillersFlag(true);
             bot.setHouseGerdaFlag(true);
         }
 
-        else if (bot.getCharacter().getPlayerState().getCurrentX() == 0 && bot.getCharacter().getPlayerState().getCurrentY() == 1 && update.getMessage().getText().equals("Ja") && !bot.isWolvesAlive()) {
+        else if (bot.getCharacter().getPlayerState().getCurrentX() == 2 && bot.getCharacter().getPlayerState().getCurrentY() == 0 && update.getMessage().getText().equals("Ja") && !bot.isWolvesAlive()) {
             KeyboardInHouse keyboardInHouse = new KeyboardInHouse();
             keyboardInHouse.createKeyboardInHouseGreyWolvesAfterFight(update.getMessage().getChatId());
         }

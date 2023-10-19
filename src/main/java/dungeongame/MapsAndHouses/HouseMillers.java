@@ -17,7 +17,7 @@ public class HouseMillers {
     public static void HouseMillerInteraction(Bot bot, Update update) {
 
         //checking if the player : pressed yes, is on the right position, is the first time here
-        if (bot.getCharacter().getPlayerState().getCurrentX() == 1 && bot.getCharacter().getPlayerState().getCurrentY() == 2 && update.getMessage().getText().equals("Ja") && bot.isHouseMillersFlag()) {
+        if (bot.getCharacter().getPlayerState().getCurrentX() == 1 && bot.getCharacter().getPlayerState().getCurrentY() == 2 && update.getMessage().getText().equals("Ja") && bot.isHouseMillersFlag() && bot.isWolvesAlive()) {
             KeyboardInHouse keyboardInHouse = new KeyboardInHouse();
             keyboardInHouse.createKeyboardInHouseMiller(update.getMessage().getChatId());
             sendPicture(bot, update.getMessage().getChatId(), "https://db3pap006files.storage.live.com/y4mF7uBq52brL0MCC9J4Pg80OiQpqXwK5KCkLnRadbLgghUmA0BKgF96fc5dcojM8y_MtftOo6ARPnl0eKirLX2Dh3ejaTmM5do9uGau7QPzKHCp0J6ab3g10ZYNjtPE22Md-GazHjXqGtT2pRYz1uP31DzVb0cX1IIR1jhgT5wHQFBkFGIfqV2TwfQ3A98fucfWpW1Ceb9qxZRnvKOReEI4MK_N1CnzQrNphr4d-EELqY?encodeFailures=1&width=220&height=220");
@@ -43,7 +43,7 @@ public class HouseMillers {
             KeyboardInHouse keyboardInHouse = new KeyboardInHouse();
             keyboardInHouse.createKeyboardInHouseMiller(update.getMessage().getChatId());
             sendPicture(bot, update.getMessage().getChatId(), "https://db3pap006files.storage.live.com/y4mF7uBq52brL0MCC9J4Pg80OiQpqXwK5KCkLnRadbLgghUmA0BKgF96fc5dcojM8y_MtftOo6ARPnl0eKirLX2Dh3ejaTmM5do9uGau7QPzKHCp0J6ab3g10ZYNjtPE22Md-GazHjXqGtT2pRYz1uP31DzVb0cX1IIR1jhgT5wHQFBkFGIfqV2TwfQ3A98fucfWpW1Ceb9qxZRnvKOReEI4MK_N1CnzQrNphr4d-EELqY?encodeFailures=1&width=220&height=220");
-            sendVoice(bot, update.getMessage().getChatId(), "https://public.db.files.1drv.com/y4moL13JxdEcaV90b2-V8TEwvfYQHzGmXRWDQyia4H77PlexkvRl8YBa58mdIlmsnFeeaOwfDRvFLfQmwAiOdVoy800TtoYVXrpriTZD5e-_RE4W5vnboItKm8yZ38Mza7zWVydMGtEE2LJq0WeXBfTItWR9FNGDrdiM3wpn2uLuDk5hphsymAYtemt5Pgscxe435PIxH-22X0ySyrmjJSmYSKoqhaa7PthZtsuzRyGOGk?AVOverride=1");
+            sendVoice(bot, update.getMessage().getChatId(), "https://public.db.files.1drv.com/y4mGZ3cwSiOeWg1Qp0t9zJO9F1qSbyNQZ6_0KrW_dr5guGrUl2nPghYAGJQv8o_RsnbjFcTVZLpFQ_wMt0YhQ_syD0DVZZQr5VAEJF-rgTVlNT6HoU0-qZOL4J2bkLqEifITs8BLSRmxk_fjj5G6w7uZ02BiR7v8ZAbPLY_aiZDvIYyVD-r_iv1g4ZdgEsHahShQq41ty6DM8Pu-6FVs9UUNOFIk11JLHgd0EtnlLWZqJY?AVOverride=1");
         }
 
     }

@@ -1,4 +1,5 @@
 package dungeongame.bot;
+
 import dungeongame.Basiccommands.VoiceSender;
 import dungeongame.MapsAndHouses.HouseGerda;
 import dungeongame.MapsAndHouses.HouseGreyWolves;
@@ -18,6 +19,8 @@ public class Bot extends TelegramLongPollingBot {
     private boolean houseMillersFlag = true;
     private boolean houseGerdaFlag = true;
     private boolean wolvesAlive = true;
+    private String[] validWords = {"/karte", "/start", "⬅️", "➡️", "⬇️", "⬆️", "Ja", "Nein", "/charakter", "/inventar", "Haus verlassen",};
+    private boolean validWordFlag = false;
 
 
     public Bot() {
@@ -36,20 +39,28 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        BasicCommandHandler.basicCommands(this, update);   //reaction to Menu commands/moving and output
-        LookingAroundHandler.handleLookingAround(this,update); //reaction to looking around button
-
-        //sending soundeffekt once
-        if (voiceFlag) VoiceSender.sendVoice(this, VoiceSender.createSoundEffect(update.getMessage().getChatId()));
-
-        //restarting StandardKeyboard after leaving a house
-        if(update.getMessage().getText().equals("Haus verlassen") || update.getMessage().getText().equals("Nein")) {
-            StandardKeyboard standardKeyboard = new StandardKeyboard();
-            standardKeyboard.createKeyboardLeavingHouses(update.getMessage().getChatId());
+        for (String word : validWords) {
+            if (word.equals(update.getMessage().getText())) {
+                validWordFlag = true;
+                break;
+            }
         }
-        HouseMillers.HouseMillerInteraction(this,update);
-        HouseGerda.HouseGerdaInteraction(this,update);
-        HouseGreyWolves.HouseGreyWolvesInteraction(this,update);
+        if (validWordFlag) {
+            BasicCommandHandler.basicCommands(this, update);   //reaction to Menu commands/moving and output
+            LookingAroundHandler.handleLookingAround(this, update); //reaction to looking around button
+
+            //sending soundeffekt once
+            if (voiceFlag) VoiceSender.sendVoice(this, VoiceSender.createSoundEffect(update.getMessage().getChatId()));
+
+            //restarting StandardKeyboard after leaving a house
+            if (update.getMessage().getText().equals("Haus verlassen") || update.getMessage().getText().equals("Nein")) {
+                StandardKeyboard standardKeyboard = new StandardKeyboard();
+                standardKeyboard.createKeyboardLeavingHouses(update.getMessage().getChatId());
+            }
+            HouseMillers.HouseMillerInteraction(this, update);
+            HouseGerda.HouseGerdaInteraction(this, update);
+            HouseGreyWolves.HouseGreyWolvesInteraction(this, update);
+        }
     }
 
     //Setter and getter Flags

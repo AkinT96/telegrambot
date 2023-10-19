@@ -47,7 +47,8 @@ public class LookingAroundHandler {
             } else if (bot.getCharacter().getPlayerState().getCurrentX() == 2) {
                 switch (bot.getCharacter().getPlayerState().getCurrentY()) {
                     case 0:
-                        keyboardinfrontofhouse.createKeyboardInFrontOfHouseGreyWolves(chatId);
+                        if (bot.isWolvesAlive()) keyboardinfrontofhouse.createKeyboardInFrontOfHouseGreyWolves(chatId);
+                        else keyboardinfrontofhouse.createKeyboardInFrontOfHouseGreyWolvesAfterFight(chatId);
                         break;
                     case 1, 2:
                         sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig, vielleicht zu ruhig?");
