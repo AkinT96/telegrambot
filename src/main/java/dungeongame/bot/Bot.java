@@ -1,6 +1,7 @@
 package dungeongame.bot;
 import dungeongame.Basiccommands.VoiceSender;
 import dungeongame.MapsAndHouses.HouseGerda;
+import dungeongame.MapsAndHouses.HouseGreyWolves;
 import dungeongame.MapsAndHouses.HouseMillers;
 import dungeongame.botcharacter.Character;
 import dungeongame.Basiccommands.BasicCommandHandler;
@@ -35,7 +36,6 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-
         BasicCommandHandler.basicCommands(this, update);   //reaction to Menu commands/moving and output
         LookingAroundHandler.handleLookingAround(this,update); //reaction to looking around button
 
@@ -49,6 +49,7 @@ public class Bot extends TelegramLongPollingBot {
         }
         HouseMillers.HouseMillerInteraction(this,update);
         HouseGerda.HouseGerdaInteraction(this,update);
+        HouseGreyWolves.HouseGreyWolvesInteraction(this,update);
     }
 
     //Setter and getter Flags

@@ -23,7 +23,7 @@ public class HouseMillers {
             sendPicture(bot, update.getMessage().getChatId(), "https://db3pap006files.storage.live.com/y4mF7uBq52brL0MCC9J4Pg80OiQpqXwK5KCkLnRadbLgghUmA0BKgF96fc5dcojM8y_MtftOo6ARPnl0eKirLX2Dh3ejaTmM5do9uGau7QPzKHCp0J6ab3g10ZYNjtPE22Md-GazHjXqGtT2pRYz1uP31DzVb0cX1IIR1jhgT5wHQFBkFGIfqV2TwfQ3A98fucfWpW1Ceb9qxZRnvKOReEI4MK_N1CnzQrNphr4d-EELqY?encodeFailures=1&width=220&height=220");
             sendVoice(bot, update.getMessage().getChatId(), "https://public.db.files.1drv.com/y4m1e8XzmbOM0BnU3W-7Qjwj5CwKhQu4RRhMHulIFyqtOdlAGLXBWPuLqnmMz-zwN5tyU4UNUB6tjAqVQnL5m0Dh4AcLEQH6c66W9NkOcgibHEUCseC54GCRJdxpW6dKAm0mUkGRnFxAIHnzHiXVlkdmD4e774enDtih27DEExMMwrQ2biqDX03iiCPaq1VaAXSMPiy8kCOaZyAxcc5GT1Ka-Q7haC-tAuSj-0RvOBAnYU?AVOverride=1");
             try {
-                Thread.sleep(34000);
+                Thread.sleep(31000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

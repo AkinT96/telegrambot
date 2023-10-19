@@ -31,6 +31,10 @@ public class Character {
         return attributes;
     }
 
+    public void setPlayerposition(Playerposition playerposition) {
+        this.playerposition = playerposition;
+    }
+
     public void setAttributes(Attributes attributes) {
         this.attributes = attributes;
     }

@@ -14,7 +14,7 @@ public class KeyboardInHouse extends Bot {
 
     public void createKeyboardInHouseGreyWolves(Long chatId) {
         SendMessage sendMessage = new SendMessage();
-        sendMessage.setText("An der Klingel steht Haus Grauwolf. Du hörst knurren. Willst du das Haus betreten?");
+        sendMessage.setText("Vor dir ein Rudel Wölfe. Gott sei Dank ist es Tag, sie sind nicht in ihrer stärksten Form. Ihr greift euch gegenseitig an!");
         sendMessage.setChatId(chatId);
 
         ReplyKeyboardMarkup replyKeyboardMarkup = getReplyKeyboardMarkup();
@@ -26,6 +26,21 @@ public class KeyboardInHouse extends Bot {
         }
     }
 
+
+
+    public void createKeyboardInHouseGreyWolvesAfterFight(Long chatId) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setText("Ein wenig Blut am Boden. Wo wohl Familie Grauwolf steckt? Vielleicht ist das ja dein nächstes Abenteuer");
+        sendMessage.setChatId(chatId);
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = getReplyKeyboardMarkup();
+        sendMessage.setReplyMarkup(replyKeyboardMarkup);
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
     public void createKeyboardInHouseMiller(Long chatId) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText("Eine Menschenmenge steht vor dir");

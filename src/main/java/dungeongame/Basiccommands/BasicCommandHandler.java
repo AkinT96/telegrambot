@@ -23,7 +23,7 @@ public class BasicCommandHandler {
 
 
 
-            if (message.hasText() && message.getText().equals("/start") || message.getText().equals("/tastatur")) {
+            if (message.hasText() && message.getText().equals("/start")) {
                 standardKeyboard.createStartKeyboard(chatId);
             }
 
@@ -42,6 +42,11 @@ public class BasicCommandHandler {
 
             if (message.getText().equals("/karte")) {
                 map.showMap(chatId, bot.getCharacter().getPlayerState().getCurrentX(), bot.getCharacter().getPlayerState().getCurrentY());
+            }
+
+            if (message.getText().equals("/tastatur")) {
+                StandardKeyboard standardKeyboard1 = new StandardKeyboard();
+                standardKeyboard1.createKeyboardLeavingHouses(chatId);
             }
 
             if (message.getText().equals("/charakter")) {

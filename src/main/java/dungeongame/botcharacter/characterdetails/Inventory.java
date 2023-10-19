@@ -37,11 +37,21 @@ public class Inventory {
         return combinedAttack;
     }
 
+    public void removeItemByName(String name) {
+        for (Item item : inventory) {
+            if (item.getName().equals(name)) {
+                inventory.remove(item);
+                return; // Wenn das Item gefunden und entfernt wurde, verlasse die Schleife
+            }
+        }
+    }
+
+
     public int combinedDefensiveStrength() {
         int combinedDefense = 0;
 
         for (Item item : inventory) {
-            combinedDefense += item.getAttackStrengthOfItem();
+            combinedDefense += item.getDefensiveStrengthOfItem();
         }
         return combinedDefense;
     }
