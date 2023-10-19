@@ -26,7 +26,7 @@ public class LookingAroundHandler {
                         }
                         break;
                     case 1:
-                        keyboardinfrontofhouse.createKeyboardInFrontOfHouse(chatId);
+                        keyboardinfrontofhouse.createKeyboardInFrontOfHouseGerade(chatId);
                         break;
                 }
             } else if (bot.getCharacter().getPlayerState().getCurrentX() == 1) {
@@ -47,7 +47,7 @@ public class LookingAroundHandler {
             } else if (bot.getCharacter().getPlayerState().getCurrentX() == 2) {
                 switch (bot.getCharacter().getPlayerState().getCurrentY()) {
                     case 0:
-                        keyboardinfrontofhouse.createKeyboardInFrontOfHouse(chatId);
+                        keyboardinfrontofhouse.createKeyboardInFrontOfHouseGreyWolves(chatId);
                         break;
                     case 1, 2:
                         sendMessage.setText("Um dich herum ist alles grün und friedlich. Es ist ruhig, vielleicht zu ruhig?");

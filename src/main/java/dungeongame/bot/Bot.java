@@ -1,9 +1,11 @@
 package dungeongame.bot;
 import dungeongame.Basiccommands.VoiceSender;
+import dungeongame.MapsAndHouses.HouseGerda;
 import dungeongame.MapsAndHouses.HouseMillers;
 import dungeongame.botcharacter.Character;
 import dungeongame.Basiccommands.BasicCommandHandler;
 import dungeongame.Basiccommands.LookingAroundHandler;
+import dungeongame.keyboards.StandardKeyboard;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -14,6 +16,8 @@ public class Bot extends TelegramLongPollingBot {
     private boolean voiceFlag = true;
     private boolean houseMillersFlag = true;
     private boolean houseGerdaFlag = true;
+    private boolean wolvesAlive = true;
+
 
     public Bot() {
         this.character = new Character();
@@ -33,9 +37,18 @@ public class Bot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
 
         BasicCommandHandler.basicCommands(this, update);   //reaction to Menu commands/moving and output
-        LookingAroundHandler.handleLookingAround(this,update); //reaction to
+        LookingAroundHandler.handleLookingAround(this,update); //reaction to looking around button
+
+        //sending soundeffekt once
         if (voiceFlag) VoiceSender.sendVoice(this, VoiceSender.createSoundEffect(update.getMessage().getChatId()));
+
+        //restarting StandardKeyboard after leaving a house
+        if(update.getMessage().getText().equals("Haus verlassen") || update.getMessage().getText().equals("Nein")) {
+            StandardKeyboard standardKeyboard = new StandardKeyboard();
+            standardKeyboard.createKeyboardLeavingHouses(update.getMessage().getChatId());
+        }
         HouseMillers.HouseMillerInteraction(this,update);
+        HouseGerda.HouseGerdaInteraction(this,update);
     }
 
     //Setter and getter Flags
@@ -57,6 +70,14 @@ public class Bot extends TelegramLongPollingBot {
 
     public boolean isHouseGerdaFlag() {
         return houseGerdaFlag;
+    }
+
+    public boolean isWolvesAlive() {
+        return wolvesAlive;
+    }
+
+    public void setWolvesAlive(boolean wolvesAlive) {
+        this.wolvesAlive = wolvesAlive;
     }
 
 

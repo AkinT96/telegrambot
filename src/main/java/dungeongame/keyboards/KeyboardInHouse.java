@@ -10,22 +10,9 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KeyboardInFrontOfHouse extends Bot {
-    public void createKeyboardInFrontOfHouseGerade(Long chatId) {
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setText("An der Klingel steht Haus Gerda. Du hörst keinen Ton. Willst du das Haus betreten?");
-        sendMessage.setChatId(chatId);
+public class KeyboardInHouse extends Bot {
 
-        ReplyKeyboardMarkup replyKeyboardMarkup = getReplyKeyboardMarkup();
-        sendMessage.setReplyMarkup(replyKeyboardMarkup);
-        try {
-            execute(sendMessage);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void createKeyboardInFrontOfHouseGreyWolves(Long chatId) {
+    public void createKeyboardInHouseGreyWolves(Long chatId) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText("An der Klingel steht Haus Grauwolf. Du hörst knurren. Willst du das Haus betreten?");
         sendMessage.setChatId(chatId);
@@ -39,9 +26,23 @@ public class KeyboardInFrontOfHouse extends Bot {
         }
     }
 
-    public void createKeyboardInFrontOfHouseMiller(Long chatId) {
+    public void createKeyboardInHouseMiller(Long chatId) {
         SendMessage sendMessage = new SendMessage();
-        sendMessage.setText("Du hörst Stimmen und Lärm. Willst du das Haus betreten?");
+        sendMessage.setText("Eine Menschenmenge steht vor dir");
+        sendMessage.setChatId(chatId);
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = getReplyKeyboardMarkup();
+        sendMessage.setReplyMarkup(replyKeyboardMarkup);
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createKeyboardInHouseGerda(Long chatId) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setText("Du betrittst einen Menschenleeren Raum");
         sendMessage.setChatId(chatId);
 
         ReplyKeyboardMarkup replyKeyboardMarkup = getReplyKeyboardMarkup();
@@ -59,19 +60,14 @@ public class KeyboardInFrontOfHouse extends Bot {
 
 
 
-
-
     private ReplyKeyboardMarkup getReplyKeyboardMarkup() {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
 
         List<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow row = new KeyboardRow();
-        KeyboardButton button1 = new KeyboardButton("Ja");
-        KeyboardButton button2 = new KeyboardButton("Nein");
+        KeyboardButton button1 = new KeyboardButton("Haus verlassen");
 
         row.add(button1);
-        row.add(button2);
-
         keyboard.add(row);
 
         replyKeyboardMarkup.setKeyboard(keyboard);

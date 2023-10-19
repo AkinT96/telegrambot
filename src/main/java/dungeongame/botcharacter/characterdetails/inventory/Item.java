@@ -24,15 +24,9 @@ public class Item  {
         return attackStrengthOfItem;
     }
 
-    public void setAttackStrengthOfItem(int attackStrengthOfItem) {
-        this.attackStrengthOfItem = attackStrengthOfItem;
-    }
-
     public int getDefensiveStrengthOfItem() {
         return defensiveStrengthOfItem;
     }
 
-    public void setDefensiveStrengthOfItem(int defensiveStrengthOfItem) {
-        this.defensiveStrengthOfItem = defensiveStrengthOfItem;
-    }
+
 }

@@ -13,8 +13,7 @@ public class Inventory {
     private final List<Item> inventory = new ArrayList<>();
 
 
-
-    public void addItems(Item item){
+    public void addItems(Item item) {
         inventory.add(item);
     }
 
@@ -22,7 +21,7 @@ public class Inventory {
         if (!inventory.isEmpty()) {
             StringBuilder inventoryText = new StringBuilder("Dein Inventar:\n");
             for (Item item : inventory) {
-                inventoryText.append(item.getName()).append("\t Angriffswert: ").append(item.getAttackStrengthOfItem()).append("\t Verteidigungswert: ").append(item.getDefensiveStrengthOfItem()).append("\n");
+                inventoryText.append(item.getName()).append("\n Angriffswert: ").append(item.getAttackStrengthOfItem()).append("\t Verteidigungswert: ").append(item.getDefensiveStrengthOfItem()).append("\n");
             }
             return inventoryText.toString();
         } else {
@@ -30,6 +29,22 @@ public class Inventory {
         }
     }
 
+    public int combinedAttackStrength() {
+        int combinedAttack = 0;
+        for (Item item : inventory) {
+            combinedAttack += item.getAttackStrengthOfItem();
+        }
+        return combinedAttack;
+    }
+
+    public int combinedDefensiveStrength() {
+        int combinedDefense = 0;
+
+        for (Item item : inventory) {
+            combinedDefense += item.getAttackStrengthOfItem();
+        }
+        return combinedDefense;
+    }
 
 
 }

@@ -37,26 +37,10 @@ public class StandardKeyboard extends Bot {
         }
     }
 
-    //keyboard after No in front of GreyWolvesHouse
-    public void KeyboardGreyWolvesHouse(Long chatId){
+    // keyboard after leaving a house
+    public void createKeyboardLeavingHouses(Long chatID){
         SendMessage sendMessage = new SendMessage();
-        sendMessage.setText("Du hörst ein knurren. Was das wohl sein könnte?");
-        sendMessage.setChatId(chatId);
-
-        ReplyKeyboardMarkup replyKeyboardMarkup = getReplyKeyboardMarkup();
-        sendMessage.setReplyMarkup(replyKeyboardMarkup);
-        try {
-            execute(sendMessage);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    //keyboard Millers House after no with key
-    public void KeyboardMillersHouseWithKey(Long chatID){
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setText("Ich dachte du bist ein Abenteurer! Fragst du dich denn gar nicht was hier steckt?");
+        sendMessage.setText("In welche Richtung geht es Krieger?");
         sendMessage.setChatId(chatID);
 
         ReplyKeyboardMarkup replyKeyboardMarkup = getReplyKeyboardMarkup();
@@ -68,19 +52,7 @@ public class StandardKeyboard extends Bot {
         }
     }
 
-    public void KeyboardMillersHouseWithoutKey(Long chatID){
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setText("Du lauscht der Stille. Das Haus ist vermutlich sowieso verlassen, zieht weiter Krieger!");
-        sendMessage.setChatId(chatID);
 
-        ReplyKeyboardMarkup replyKeyboardMarkup = getReplyKeyboardMarkup();
-        sendMessage.setReplyMarkup(replyKeyboardMarkup);
-        try {
-            execute(sendMessage);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     private ReplyKeyboardMarkup getReplyKeyboardMarkup() {
