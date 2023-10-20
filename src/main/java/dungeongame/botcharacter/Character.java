@@ -7,10 +7,11 @@ import dungeongame.botcharacter.characterdetails.Playerposition;
 public class Character {
 
     private Playerposition playerposition;
-    private  Inventory inventory;
+    private Inventory inventory;
     private Attributes attributes;
+
     public Character() {
-        this.playerposition = new Playerposition(0,0);
+        this.playerposition = new Playerposition(0, 0);
         this.inventory = new Inventory();
         this.attributes = new Attributes();
     }

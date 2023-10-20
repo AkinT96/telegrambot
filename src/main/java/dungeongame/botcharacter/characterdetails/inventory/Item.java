@@ -1,11 +1,12 @@
 package dungeongame.botcharacter.characterdetails.inventory;
 
 
-public class Item  {
+public class Item {
     private String name;
     private int attackStrengthOfItem;
     private int defensiveStrengthOfItem;
-    public Item(String name, int attackStrengthOfItem, int defensiveStrengthOfItem){
+
+    public Item(String name, int attackStrengthOfItem, int defensiveStrengthOfItem) {
         this.name = name;
         this.attackStrengthOfItem = attackStrengthOfItem;
         this.defensiveStrengthOfItem = defensiveStrengthOfItem;

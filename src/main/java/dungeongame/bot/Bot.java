@@ -9,7 +9,9 @@ import dungeongame.Basiccommands.BasicCommandHandler;
 import dungeongame.Basiccommands.LookingAroundHandler;
 import dungeongame.keyboards.StandardKeyboard;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
 public class Bot extends TelegramLongPollingBot {
@@ -19,7 +21,7 @@ public class Bot extends TelegramLongPollingBot {
     private boolean houseMillersFlag = true;
     private boolean houseGerdaFlag = true;
     private boolean wolvesAlive = true;
-    private String[] validWords = {"/karte", "/start", "⬅️", "➡️", "⬇️", "⬆️", "Ja", "Nein", "/charakter", "/inventar", "Haus verlassen",};
+    private final String[] validWords = {"/karte", "/start", "⬅️", "➡️", "⬇️", "⬆️", "Ja", "Nein", "/charakter", "/inventar", "Haus verlassen",};
     private boolean validWordFlag = false;
 
 
@@ -39,6 +41,8 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+
+        //checking User message if it is valid
         for (String word : validWords) {
             if (word.equals(update.getMessage().getText())) {
                 validWordFlag = true;
@@ -57,6 +61,8 @@ public class Bot extends TelegramLongPollingBot {
                 StandardKeyboard standardKeyboard = new StandardKeyboard();
                 standardKeyboard.createKeyboardLeavingHouses(update.getMessage().getChatId());
             }
+
+            //going into the houses (or not if key needed)
             HouseMillers.HouseMillerInteraction(this, update);
             HouseGerda.HouseGerdaInteraction(this, update);
             HouseGreyWolves.HouseGreyWolvesInteraction(this, update);

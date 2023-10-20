@@ -22,7 +22,6 @@ public class BasicCommandHandler {
             sendMessage.setChatId(chatId);
 
 
-
             if (message.hasText() && message.getText().equals("/start")) {
                 standardKeyboard.createStartKeyboard(chatId);
             }
@@ -58,7 +57,7 @@ public class BasicCommandHandler {
                     throw new RuntimeException(e);
                 }
             }
-            if (message.getText().equals("/inventar")){
+            if (message.getText().equals("/inventar")) {
                 sendMessage.setText(bot.getCharacter().getInventory().showInventory());
                 try {
                     bot.execute(sendMessage);

@@ -23,6 +23,7 @@ public class HouseGerda {
     private static final Item item8 = new Item("Amulett der Verteidigung", 0, 25);
     private static final Item item9 = new Item("Umhang", 0, 10);
     private static final Item item10 = new Item("Gürtel", 3, 0);
+
     public static void HouseGerdaInteraction(Bot bot, Update update) {
 
         //checking if the player : pressed yes, is on the right position, is the first time here
@@ -46,18 +47,14 @@ public class HouseGerda {
             bot.getCharacter().getAttributes().setDefense(bot.getCharacter().getInventory().combinedDefensiveStrength());
 
             bot.setHouseGerdaFlag(false);
-        }
-
-        else if (bot.getCharacter().getPlayerState().getCurrentX() == 0 && bot.getCharacter().getPlayerState().getCurrentY() == 1 && update.getMessage().getText().equals("Ja") && bot.isHouseGerdaFlag() && bot.isHouseMillersFlag()) {
-            sendText(bot,update.getMessage().getChatId(),"Die Tür ist verschlossen.");
+        } else if (bot.getCharacter().getPlayerState().getCurrentX() == 0 && bot.getCharacter().getPlayerState().getCurrentY() == 1 && update.getMessage().getText().equals("Ja") && bot.isHouseGerdaFlag() && bot.isHouseMillersFlag()) {
+            sendText(bot, update.getMessage().getChatId(), "Die Tür ist verschlossen.");
             StandardKeyboard standardKeyboard = new StandardKeyboard();
             standardKeyboard.createKeyboardLeavingHouses(update.getMessage().getChatId());
-        }
-
-        else if (bot.getCharacter().getPlayerState().getCurrentX() == 0 && bot.getCharacter().getPlayerState().getCurrentY() == 1 && update.getMessage().getText().equals("Ja") && !bot.isHouseGerdaFlag() && !bot.isHouseMillersFlag()) {
+        } else if (bot.getCharacter().getPlayerState().getCurrentX() == 0 && bot.getCharacter().getPlayerState().getCurrentY() == 1 && update.getMessage().getText().equals("Ja") && !bot.isHouseGerdaFlag() && !bot.isHouseMillersFlag()) {
             KeyboardInHouse keyboardInHouse = new KeyboardInHouse();
             keyboardInHouse.createKeyboardInHouseMiller(update.getMessage().getChatId());
-            sendText(bot,update.getMessage().getChatId(),"Der Raum ist leer, es herrscht Stille");
+            sendText(bot, update.getMessage().getChatId(), "Der Raum ist leer, es herrscht Stille");
         }
 
     }

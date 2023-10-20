@@ -5,7 +5,7 @@ public class Attributes {
     private int strength;
     private int defense;
 
-    public Attributes(){
+    public Attributes() {
         this.life = 100;
         this.strength = 0;
         this.defense = 0;
